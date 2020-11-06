@@ -32,6 +32,9 @@ class AwsPinpointClient
      */
     public function send(AwsPinpointSmsMessage $message)
     {
+        if (is_null($message->recipients)) {
+            return;
+        }
         try {
             $result = $this->client->sendMessages([
                 'ApplicationId' => config('aws.Pinpoint.application_id'),

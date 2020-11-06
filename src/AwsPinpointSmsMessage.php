@@ -11,7 +11,7 @@ class AwsPinpointSmsMessage
 
     public function __construct($body = '')
     {
-        if (! empty($body)) {
+        if (!empty($body)) {
             $this->body = trim($body);
         }
     }
@@ -37,6 +37,9 @@ class AwsPinpointSmsMessage
 
     public function setRecipients($recipients)
     {
+        if (is_null($recipients)) {
+            return $this;
+        }
         if (is_string($recipients) === true || is_int($recipients) === true) {
             $recipients = [$recipients];
         }
